@@ -17,6 +17,6 @@ namespace Amber
     void PushLayer(Layer* t_layer);
     void PopLayer(Layer* t_layer);
 
-    int size() { return m_layers.size(); }
+    unsigned long int size() { return m_layers.size(); }
     };
 }

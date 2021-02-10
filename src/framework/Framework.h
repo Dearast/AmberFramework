@@ -4,15 +4,27 @@
 #include "Logger.h"
 #include "LayerStack.h"
 
+#include <memory>
+
+#if defined(COMPILE_WITH_SFML)
+#include <SFML/Graphics.hpp>
+#endif
+
 namespace Amber
 {
     class AMBER_API Framework
     {
     private:
     bool m_running = true;
+    bool m_closeWhenAllLayerAreClosed = true;
     LayerStack m_layerStack;
     public:
-    void Run() const;
+#if defined(COMPILE_WITH_SFML)
+    sf::Event m_event;
+#endif
+
+    void Run();
+    void OnEvent();
 
     void PushLayer(Layer* t_layer);
 
