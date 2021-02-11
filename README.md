@@ -13,7 +13,7 @@ Amber Engine using template [cpp_starter_project](https://github.com/lefticus/cp
 Another core dependencies are [SFML](https://www.sfml-dev.org/index.php) and in future is planned use also another graphical api like SDL2 and OpenGL.\
 Other dependecies list are in described [cpp_starter_project](https://github.com/lefticus/cpp_starter_project).
 
-# Licence
+# License
  - Font [font8x8](https://github.com/dhepper/font8x8) by [dhepper](https://github.com/dhepper)
 
 # Compilation
