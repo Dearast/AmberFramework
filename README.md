@@ -14,7 +14,9 @@ Another core dependencies are [SFML](https://www.sfml-dev.org/index.php) and in 
 Other dependecies list are in described [cpp_starter_project](https://github.com/lefticus/cpp_starter_project).
 
 # License
- - Font [font8x8](https://github.com/dhepper/font8x8) by [dhepper](https://github.com/dhepper)
+ - [SFML](https://www.sfml-dev.org/license.php)
+ - [SDL2](https://www.libsdl.org/license.php)
+ - [font8x8](https://github.com/dhepper/font8x8) by [dhepper](https://github.com/dhepper)
 
 # Compilation
 Clone git repository:
