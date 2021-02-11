@@ -8,6 +8,8 @@
 
 #if defined(COMPILE_WITH_SFML)
 #include <SFML/Graphics.hpp>
+#elif defined(COMPILE_WITH_SDL)
+#include <SDL2/SDL.h>
 #endif
 
 namespace Amber
@@ -21,6 +23,8 @@ namespace Amber
     public:
 #if defined(COMPILE_WITH_SFML)
     sf::Event m_event;
+#elif defined(COMPILE_WITH_SDL)
+    SDL_Event m_event;
 #endif
 
     void Run();

@@ -20,8 +20,10 @@ namespace Amber
         void OnAttach() override {}
         void OnDetach() override {}
         void OnUpdate() override {}
-        #if defined(COMPILE_WITH_SFML)
+#if defined(COMPILE_WITH_SFML)
         void OnEvent(sf::Event& t_event) override  {}
-        #endif
+#elif defined(COMPILE_WITH_SDL)
+        void OnEvent(SDL_Event& t_event) override  {}
+#endif
     };
 }

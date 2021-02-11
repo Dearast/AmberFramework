@@ -6,6 +6,8 @@
 
 #if defined(COMPILE_WITH_SFML)
 #include <SFML/Graphics.hpp>
+#elif defined(COMPILE_WITH_SDL)
+#include <SDL2/SDL.h>
 #endif
 
 namespace Amber
@@ -19,8 +21,10 @@ namespace Amber
     virtual void OnAttach() {}
     virtual void OnDetach() {}
     virtual void OnUpdate() {}
-    #if defined(COMPILE_WITH_SFML)
+#if defined(COMPILE_WITH_SFML)
     virtual void OnEvent(sf::Event& t_event)  {}
-    #endif
+#elif defined(COMPILE_WITH_SDL)
+    virtual void OnEvent(SDL_Event& t_event)  {}
+#endif
     };
 }

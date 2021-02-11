@@ -33,9 +33,7 @@ namespace Amber
     {
         for (const auto& layer : this->m_layerStack.m_layers)
         {
-            #if defined(COMPILE_WITH_SFML)
             layer->OnEvent(this->m_event);
-            #endif
         }
     }
 
