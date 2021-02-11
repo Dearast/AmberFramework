@@ -23,8 +23,9 @@ Clone git repository:
 $ git clone https://github.com/Dearast/AmberFramework.git
 ```
 Installation all dependencies on Arch Linux
+For both SFML and SDL2
 ```
-$ sudo pacman -S gcc clang llvm make cmake doxygen graphviz ccache cppcheck sfml2 --needed
+$ sudo pacman -S gcc clang llvm make cmake doxygen graphviz ccache cppcheck sfml2 sdl2 --needed
 $ yay -S conan include-what-you-use --needed
 ```
 SPDLOG Installation from https://github.com/gabime/spdlog
