@@ -16,6 +16,7 @@ Other dependecies list are in described [cpp_starter_project](https://github.com
 # License
  - [SFML](https://www.sfml-dev.org/license.php)
  - [SDL2](https://www.libsdl.org/license.php)
+ - [cpp_starter_project](https://github.com/lefticus/cpp_starter_project)
  - [font8x8](https://github.com/dhepper/font8x8) by [dhepper](https://github.com/dhepper)
 
 # Compilation
