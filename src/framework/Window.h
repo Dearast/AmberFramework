@@ -23,7 +23,7 @@ namespace Amber
         WindowProps(const std::string& t_title = "Amber Framework",
                     const bool& t_vsync = false,
                     const unsigned int& t_width = 1280,
-                    const unsigned int& t_height = 720) : title(t_title), width(t_width), height(t_height), vsync(t_vsync) {}
+                    const unsigned int& t_height = 720) : title(t_title), vsync(t_vsync), width(t_width), height(t_height) {}
     };
 
     class AMBER_API Window
