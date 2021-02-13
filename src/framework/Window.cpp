@@ -14,7 +14,7 @@ namespace Amber
     {
         this->m_windowProps = t_props;
 #if defined(COMPILE_WITH_SFML)
-        this->m_window.create(sf::VideoMode(800, 600), "SFML window");
+        this->m_window.create(sf::VideoMode(this->m_windowProps.width, this->m_windowProps.height), this->m_windowProps.title);
 #elif defined(COMPILE_WITH_SDL)
         if(SDL_Init(SDL_INIT_VIDEO) < 0)
         {
