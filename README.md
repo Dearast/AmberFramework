@@ -17,15 +17,5 @@ All dependencies for Amber Framework can find on template [cpp_starter_project](
  - [cpp_starter_project](https://github.com/lefticus/cpp_starter_project) by [Jason Turner | lefticus](https://github.com/lefticus)
  - [font8x8](https://github.com/dhepper/font8x8) by [dhepper](https://github.com/dhepper)
 
-# Compilation
-Clone git repository:
-```
-$ git clone https://github.com/Dearast/AmberFramework.git
-```
-Installation all dependencies on Arch Linux
-For both SFML and SDL2
-```
-$ sudo pacman -S gcc clang llvm make cmake doxygen graphviz ccache cppcheck sfml2 sdl2 --needed
-$ yay -S conan include-what-you-use --needed
-```
-SPDLOG Installation from https://github.com/gabime/spdlog
+# Installation and Compilation
+Check our wiki page on [Installation Guide](https://github.com/Dearast/AmberFramework/wiki/Installation)
