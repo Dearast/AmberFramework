@@ -37,13 +37,27 @@ namespace Amber
         }
     }
 
-    void Framework::PushLayer(Layer* t_layer)
+    void Framework::PushLayer(const std::shared_ptr<Layer>& t_layer)
     {
         m_layerStack.PushLayer(t_layer);
     }
 
-    void Framework::PopLayer(Layer* t_layer)
+    void Framework::PopLayer(const std::shared_ptr<Layer>& t_layer)
     {
         m_layerStack.PopLayer(t_layer);
     }
+}
+
+//NOTE Moved EntryPoint here to framework
+int main()
+{
+    Amber::Logger::Init();
+
+    //FIXME Getting error [deleting a pointer through a type that is not marked 'gsl::owner<>'; consider using a smart pointer instead]
+    //TODO Create smart pointer here
+    auto framework = Amber::CreateFramework();
+    framework->Run();
+    delete framework;
+
+    return 0;
 }
