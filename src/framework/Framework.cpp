@@ -21,7 +21,7 @@ namespace Amber
             for (const auto& layer : this->m_layerStack.m_layers)
             {
                 layer->OnUpdate();
-                if(layer->m_running == false)
+                if(!layer->m_running)
                 {
                     PopLayer(layer);
                 }
