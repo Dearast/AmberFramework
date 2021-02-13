@@ -1,3 +1,4 @@
+/*
 #include "Framework.h"
 
 #include <memory>
@@ -10,9 +11,10 @@ int main()
 
     //FIXME Getting error [deleting a pointer through a type that is not marked 'gsl::owner<>'; consider using a smart pointer instead]
     //TODO Create smart pointer here
-    auto framework = Amber::CreateFramework();
+    std::unique_ptr<Amber::Framework> framework = std::make_unique<Amber::Framework>(Amber::CreateFramework());
     framework->Run();
-    delete framework;
+    //delete framework;
 
     return 0;
 }
+*/
