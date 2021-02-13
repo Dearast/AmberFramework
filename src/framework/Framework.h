@@ -30,9 +30,9 @@ namespace Amber
     void Run();
     void OnEvent();
 
-    void PushLayer(Layer* t_layer);
+    void PushLayer(const std::shared_ptr<Layer>& t_layer);
 
-    void PopLayer(Layer* t_layer);
+    void PopLayer(const std::shared_ptr<Layer>& t_layer);
 
     void Set_Running(const bool& t_state) { this->m_running = t_state; }
 };

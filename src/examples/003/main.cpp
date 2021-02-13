@@ -73,7 +73,7 @@ class ExampleFramework : public Amber::Framework
     public:
         ExampleFramework()
         {
-            PushLayer(new LayerWindowExample());
+            PushLayer(std::make_shared<LayerWindowExample>());
         }
 };
 

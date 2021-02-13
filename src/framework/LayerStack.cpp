@@ -12,19 +12,19 @@ namespace Amber
         for(auto& layer : this->m_layers)
         {
             layer->OnDetach();
-            delete layer;
+            //delete layer;
             layer = nullptr;
         }
         this->m_layers.erase(std::remove(this->m_layers.begin(), this->m_layers.end(), nullptr), this->m_layers.end());
     }
 
-    void LayerStack::PushLayer(Layer* t_layer)
+    void LayerStack::PushLayer(const std::shared_ptr<Layer>& t_layer)
     {
         this->m_layers.emplace_back(t_layer);
         t_layer->OnAttach();
     }
 
-    void LayerStack::PopLayer(Layer* t_layer)
+    void LayerStack::PopLayer(const std::shared_ptr<Layer>& t_layer)
     {
         auto find = std::find(this->m_layers.begin(), this->m_layers.end(), t_layer);
         if(find != this->m_layers.end())
