@@ -22,9 +22,9 @@ namespace Amber
     virtual void OnDetach() {}
     virtual void OnUpdate() {}
 #if defined(COMPILE_WITH_SFML)
-    virtual void OnEvent(sf::Event& t_event)  {}
+    virtual void OnEvent([[maybe_unused]] sf::Event& t_event)  {}
 #elif defined(COMPILE_WITH_SDL)
-    virtual void OnEvent(SDL_Event& t_event)  {}
+    virtual void OnEvent([[maybe_unused]] SDL_Event& t_event)  {}
 #endif
     };
 }
