@@ -1,6 +1,16 @@
 cmake_minimum_required(VERSION 3.15)
 
-option(ENABLE_CONAN "Enable CONAN Package manager" OFF)  #NOTE Option for CONAN package manager
+option(ENABLE_CONAN_PKG_SDL2 "Enable CONAN Package manager for SDL2 installation." ON)  #NOTE Option for CONAN package manager that enable install SDL2 by CONAN.
+option(ENABLE_CONAN_PKG_SFML "Enable CONAN Package manager for SFML installation." ON)  #NOTE Option for CONAN package manager that enable install SFML by CONAN.
+
+option(ENABLE_USE_SDL2 "Enable uses of SDL2." OFF)                                       #NOTE Option for CONAN package manager that enable install SFML by CONAN.
+option(ENABLE_USE_SFML "Enable uses of SFML." OFF)                                       #NOTE Option for CONAN package manager that enable install SFML by CONAN.
+
+set(API_LIB_OPTION
+  "SDL2"
+  API_LIB STRING "API/LIB to be used.")
+set(API_LIB_OPTION_VALUES "SDL2" "SFML")
+#set_property(API_LIB API_LIB_OPTION PROPERTY STRINGS ${API_LIB_OPTION_VALUES})
 
 # Set the project name to your project name, my project isn't very descriptive
 project(myproject CXX)
@@ -62,13 +72,23 @@ endif()
 set(CONAN_EXTRA_REQUIRES "")
 set(CONAN_EXTRA_OPTIONS "")
 
-#FIXME If conan is disable then no bin or lib folder will not created
-#TODO Add try_run or something similiar to run()
-if(ENABLE_CONAN)
-  include(cmake/Conan.cmake)
-  run_conan()
-else()
+if(ENABLE_CONAN_PKG_SFML)
+  if(ENABLE_USE_SFML)
+    set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} imgui-sfml/2.1@bincrafters/stable)
+    # set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sfml:shared=False sfml:graphics=True sfml:audio=False
+    # sfml:window=True libalsa:disable_python=True)
+  endif()
 endif()
+
+if(ENABLE_CONAN_PKG_SDL2)
+  if(ENABLE_USE_SDL2)
+    set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} sdl2/2.0.12@bincrafters/stable)
+    # set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sdl2:wayland=True)
+  endif()
+endif()
+
+include(cmake/Conan.cmake)
+run_conan()
 
 if(ENABLE_TESTING)
   enable_testing()
