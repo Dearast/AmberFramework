@@ -1,5 +1,15 @@
 #pragma once
 
+/**
+ * 8x8 monochrome bitmap fonts for rendering
+ * Author: Daniel Hepper <daniel@hepper.net>
+ *
+ * License: Public Domain
+ *
+ * Based on:
+ * http://dimensionalrift.homelinux.net/combuster/mos3/?p=viewsource&file=/modules/gfx/font8_8.asm
+ **/
+
 #include <stdint.h>
 
 const static uint8_t font8x8[][8] = {
