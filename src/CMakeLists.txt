@@ -36,3 +36,6 @@ add_subdirectory(examples/002)
 
 #NOTE example_003 - Window creation SFML/SDL2
 add_subdirectory(examples/003)
+
+#NOTE example_004 - SDL2 example
+add_subdirectory(examples/004)
