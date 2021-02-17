@@ -1,11 +1,9 @@
 #include "../../framework/AmberFramework.h"
 
-class Layer_MainWindow:public Amber::LayerWindow
+class Layer_MainWindow : public Amber::LayerWindow
 {
-    private:
-        std::string m_windowName = "Example - 004";
     public:
-        Layer_MainWindow():LayerWindow({this->m_windowName, true, 320, 240})
+        Layer_MainWindow() : LayerWindow({"LayerWindowExample - SDL2", true, 320, 240})
         {
 
         }
@@ -15,6 +13,9 @@ class Layer_MainWindow:public Amber::LayerWindow
             this->m_window->ClearWindow();
 
             //TODO Add some examples
+            this->m_window->Set_Renderer_Color(255, 200, 60);
+            this->m_window->DrawR_CFont8x8_string(0, 0, "Amber Framework", 2, 2);
+            this->m_window->DrawR_Font8x8_string(0, 8*4, "Hello, World!");
 
             this->m_window->OnUpdate();
         }
@@ -32,10 +33,10 @@ class Layer_MainWindow:public Amber::LayerWindow
         }
 };
 
-class Framework:public Amber::Framework
+class Framework_004 : public Amber::Framework
 {
     public:
-        Framework()
+        Framework_004()
         {
             PushLayer(std::make_shared<Layer_MainWindow>());
         }
@@ -43,5 +44,5 @@ class Framework:public Amber::Framework
 
 Amber::Framework* Amber::CreateFramework()
 {
-    return new Framework();
+    return new Framework_004();
 }
