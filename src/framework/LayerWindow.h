@@ -21,5 +21,16 @@ namespace Amber
         void OnDetach() override {}
         void OnUpdate() override {}
         void OnEvent([[maybe_unused]] SDL_Event& t_event) override  {}
+
+        //NOTE Reintrepret from Window
+        void Window_Draw();
+        void Window_Clear();
+
+        void Renderer_SetColor(const Uint8& t_red, const Uint8& t_green, const Uint8& t_blue, const Uint8& t_alpha = 255);
+
+        void Renderer_Print(const int& t_x, const int& t_y, const int& t_id);
+        void Renderer_Print(const int& t_x, const int& t_y, const std::string& t_ids) ;
+        void Renderer_Print(const int& t_x, const int& t_y, const int& t_id, const int& t_pixelSizeX, const int& t_pixelSizeY);
+        void Renderer_Print(const int& t_x, const int& t_y, const std::string& t_ids, const int& t_pixelSizeX, const int& t_pixelSizeY);
     };
 }

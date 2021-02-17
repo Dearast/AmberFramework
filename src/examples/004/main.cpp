@@ -10,20 +10,19 @@ class Layer_MainWindow : public Amber::LayerWindow
 
         void OnUpdate() override
         {
-            this->m_window->ClearWindow();
+            Window_Clear();
 
-            //TODO Add some examples
-            this->m_window->Set_Renderer_Color(255, 200, 60);
-            this->m_window->DrawR_CFont8x8_string(0, 0, "Amber Framework", 2, 2);
-            this->m_window->DrawR_Font8x8_string(0, 8*4, "Hello, World!");
+            Renderer_SetColor(255, 200, 60);
+            Renderer_Print(0, 0, "Amber Framework", 2, 2);
+            Renderer_Print(0, 8*4, "Hello, World!");
 
             //TODO Make some system for better writing japanese without numbers
             //NOTE Some example of printing japanese hiragana on window
-            this->m_window->DrawR_CFont8x8(0, 8*6, 503, 2, 2);
-            this->m_window->DrawR_CFont8x8((8*1*2), 8*6, 504, 2, 2);
-            this->m_window->DrawR_CFont8x8((8*2*2), 8*6, 505, 2, 2);
+            Renderer_Print(0, 8*6, 503, 2, 2);
+            Renderer_Print((8*1*2), 8*6, 504, 2, 2);
+            Renderer_Print((8*2*2), 8*6, 505, 2, 2);
 
-            this->m_window->OnUpdate();
+            Window_Draw();
         }
 
         void OnEvent(SDL_Event& t_event) override
