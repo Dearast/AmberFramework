@@ -37,7 +37,7 @@ class Example_002 : public Amber::Framework
             Amber::Logger::Set_ClientLoggerName("[EXAMP-002]");
             AMBER_CLIENT_INFO("Example_002 is constructed.");
 
-            PushLayer(new LayerExample());
+            PushLayer(std::make_shared<LayerExample>());
 
             //NOTE this will disable Update loop
             this->Set_Running(false);
