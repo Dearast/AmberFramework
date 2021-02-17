@@ -5,11 +5,7 @@
 #include "Core.h"
 #include "Logger.h"
 
-#if defined(COMPILE_WITH_SFML)
-#include <SFML/Graphics.hpp>
-#elif defined(COMPILE_WITH_SDL)
 #include <SDL2/SDL.h>
-#endif
 
 namespace Amber
 {
@@ -30,12 +26,8 @@ namespace Amber
     {
     public:
     WindowProps m_windowProps;
-#if defined(COMPILE_WITH_SFML)   //NOTE If is defined for SFML
-    sf::RenderWindow m_window;
-#elif defined(COMPILE_WITH_SDL)  //NOTE If is defined for SDL2
     SDL_Window* m_window = nullptr;
     SDL_Renderer* m_renderer = nullptr;
-#endif
     public:
     ~Window();
 
@@ -44,8 +36,6 @@ namespace Amber
 
     void ClearWindow();
 
-#if defined(COMPILE_WITH_SFML)
-#elif defined(COMPILE_WITH_SDL)
     //NOTE Setting Window Properties
     void Set_Window_Bordered(const SDL_bool& t_state);
     void Set_Window_Resizable(const SDL_bool& t_state);
@@ -70,6 +60,5 @@ namespace Amber
     void DrawR_Font8x8(const int& t_x, const int& t_y, const int& t_id);
     void DrawR_Font8x8_string(const int& t_x, const int& t_y, const std::string& t_ids) ;
     void DrawR_CFont8x8(const int& t_x, const int& t_y, const int& t_id, const int& t_pixelSizeX, const int& t_pixelSizeY);
-#endif
     };
 }

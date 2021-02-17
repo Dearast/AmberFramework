@@ -1,4 +1,3 @@
-#if defined(COMPILE_WITH_SDL)
 #include "../../framework/AmberFramework.h"
 
 class Layer_MainWindow:public Amber::LayerWindow
@@ -46,5 +45,3 @@ Amber::Framework* Amber::CreateFramework()
 {
     return new Framework();
 }
-
-#endif

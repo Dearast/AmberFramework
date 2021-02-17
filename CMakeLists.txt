@@ -1,10 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-option(ENABLE_CONAN_PKG_SDL2 "Enable CONAN Package manager for SDL2 installation." ON)  #NOTE Option for CONAN package manager that enable install SDL2 by CONAN.
-option(ENABLE_CONAN_PKG_SFML "Enable CONAN Package manager for SFML installation." ON)  #NOTE Option for CONAN package manager that enable install SFML by CONAN.
-
-option(ENABLE_USE_SDL2 "Enable uses of SDL2." OFF)                                       #NOTE Option for CONAN package manager that enable install SFML by CONAN.
-option(ENABLE_USE_SFML "Enable uses of SFML." OFF)                                       #NOTE Option for CONAN package manager that enable install SFML by CONAN.
+option(ENABLE_CONAN_PKG_SDL2 "Enable CONAN Package manager for SDL2 installation." OFF)  #NOTE Option for CONAN package manager that enable install SDL2 by CONAN.
 
 set(API_LIB_OPTION
   "SDL2"
@@ -72,19 +68,9 @@ endif()
 set(CONAN_EXTRA_REQUIRES "")
 set(CONAN_EXTRA_OPTIONS "")
 
-if(ENABLE_CONAN_PKG_SFML)
-  if(ENABLE_USE_SFML)
-    set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} imgui-sfml/2.1@bincrafters/stable)
-    # set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sfml:shared=False sfml:graphics=True sfml:audio=False
-    # sfml:window=True libalsa:disable_python=True)
-  endif()
-endif()
-
 if(ENABLE_CONAN_PKG_SDL2)
-  if(ENABLE_USE_SDL2)
-    set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} sdl2/2.0.12@bincrafters/stable)
-    # set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sdl2:wayland=True)
-  endif()
+  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} sdl2/2.0.12@bincrafters/stable)
+  # set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sdl2:wayland=True)
 endif()
 
 include(cmake/Conan.cmake)

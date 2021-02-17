@@ -4,9 +4,5 @@ if(COMPILE_EXAMPLE_003)
   aux_source_directory(${PROJECT_SOURCE_DIR}/src/examples/003/ EXAMPLE_003_FILES)                                                     #NOTE AUX find all cpp/h files in source folder
   add_executable(example_003 ${EXAMPLE_003_FILES})                                                                                    #NOTE Create Executable
   #target_include_directories(example_001 PRIVATE ${PROJECT_SOURCE_DIR}/src/Engine ${PROJECT_SOURCE_DIR}/src/Engine/Algorithms)       #NOTE Include all h files in source folders
-  if(ENABLE_USE_SFML)
-    target_link_libraries(example_003 PRIVATE project_warnings project_options Amber_SFML)                                            #NOTE Link
-  elseif(ENABLE_USE_SDL2)
-    target_link_libraries(example_003 PRIVATE project_warnings project_options Amber_SDL)                                             #NOTE Link
-  endif()
+  target_link_libraries(example_003 PRIVATE project_warnings project_options Amber_SDL)                                             #NOTE Link
 endif()

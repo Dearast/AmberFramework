@@ -6,16 +6,13 @@ namespace Amber
 {
     Window::~Window()
     {
-#if defined(COMPILE_WITH_SFML)
-#endif
+        SDL_DestroyRenderer(this->m_renderer);
+        SDL_DestroyWindow(this->m_window);
     }
 
     void Window::Init(const WindowProps& t_props)
     {
         this->m_windowProps = t_props;
-#if defined(COMPILE_WITH_SFML)
-        this->m_window.create(sf::VideoMode(this->m_windowProps.width, this->m_windowProps.height), this->m_windowProps.title);
-#elif defined(COMPILE_WITH_SDL)
         if(SDL_Init(SDL_INIT_VIDEO) < 0)
         {
             AMBER_CORE_ERROR("SDL2 could not initialize! SDL_Error: {0}", SDL_GetError());
@@ -53,24 +50,18 @@ namespace Amber
                 }
             }
         }
-#endif
     }
 
     void Window::OnUpdate()
     {
-#if defined(COMPILE_WITH_SFML)
-        this->m_window.display();
-#endif
+        //TODO Make Update for SDL2
     }
 
     void Window::ClearWindow()
     {
-#if defined(COMPILE_WITH_SFML)
-        this->m_window.clear();
-#endif
+        //TODO Make Clear for SDL2
     }
 
-    #if defined(COMPILE_WITH_SDL)
     void Window::Set_Window_Bordered(const SDL_bool& t_state)
     {
         SDL_SetWindowBordered(this->m_window, t_state);
@@ -178,5 +169,4 @@ namespace Amber
             }
         }
     }
-#endif
 }
