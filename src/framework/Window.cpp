@@ -1,6 +1,6 @@
 #include "Window.h"
 
-#include "Font8x8.h"
+#include "Font8x8.hpp"
 
 namespace Amber
 {
