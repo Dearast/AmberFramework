@@ -60,5 +60,6 @@ namespace Amber
     void DrawR_Font8x8(const int& t_x, const int& t_y, const int& t_id);
     void DrawR_Font8x8_string(const int& t_x, const int& t_y, const std::string& t_ids) ;
     void DrawR_CFont8x8(const int& t_x, const int& t_y, const int& t_id, const int& t_pixelSizeX, const int& t_pixelSizeY);
+    void DrawR_CFont8x8_string(const int& t_x, const int& t_y, const std::string& t_ids, const int& t_pixelSizeX, const int& t_pixelSizeY);
     };
 }

@@ -55,11 +55,14 @@ namespace Amber
     void Window::OnUpdate()
     {
         //TODO Make Update for SDL2
+        SDL_RenderPresent(this->m_renderer);
     }
 
     void Window::ClearWindow()
     {
         //TODO Make Clear for SDL2
+        SDL_SetRenderDrawColor(this->m_renderer, 0, 0, 0, 255);
+        SDL_RenderClear(this->m_renderer);
     }
 
     void Window::Set_Window_Bordered(const SDL_bool& t_state)
@@ -166,6 +169,17 @@ namespace Amber
                 {
                     this->DrawR_CPixel(t_x + x * t_pixelSizeX, t_y + y * t_pixelSizeY, t_pixelSizeX, t_pixelSizeY);
                 }
+            }
+        }
+    }
+
+    void Window::DrawR_CFont8x8_string(const int& t_x, const int& t_y, const std::string& t_ids, const int& t_pixelSizeX, const int& t_pixelSizeY)
+    {
+        for (int i = 0; i < t_ids.size(); i++)
+        {
+            if (t_ids[i] != ' ')
+            {
+                this->DrawR_CFont8x8(t_x + (8 * i * t_pixelSizeX), t_y, t_ids[i], t_pixelSizeX, t_pixelSizeY);
             }
         }
     }
