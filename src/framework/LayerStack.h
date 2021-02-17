@@ -18,6 +18,6 @@ namespace Amber
     void PushLayer(const std::shared_ptr<Layer>& t_layer);
     void PopLayer(const std::shared_ptr<Layer>& t_layer);
 
-    unsigned long int size() { return m_layers.size(); }
+    unsigned long int size() const { return m_layers.size(); }
     };
 }
