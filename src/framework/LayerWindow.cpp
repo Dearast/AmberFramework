@@ -23,6 +23,25 @@ namespace Amber
     {
         this->m_window->Set_Renderer_Color(t_red, t_green, t_blue, t_alpha);
     }
+
+    void LayerWindow::Renderer_Pixel(const int& t_x, const int& t_y)
+    {
+        this->m_window->DrawR_Pixel(t_x, t_y);
+    }
+    void LayerWindow::Renderer_Pixel(const int& t_x, const int& t_y, const int& t_pixelSizeX, const int& t_pixelSizeY)
+    {
+        this->m_window->DrawR_CPixel(t_x, t_y, t_pixelSizeX, t_pixelSizeY);
+    }
+    void LayerWindow::Renderer_Pixels(const std::vector<SDL_Point>& t_points, const int& t_count)
+    {
+        this->m_window->DrawR_Pixels(t_points, t_count);
+    }
+    void LayerWindow::Renderer_Pixels(const std::vector<SDL_Rect>& t_rects, const int& t_count, const int& t_pixelSizeX, const int& t_pixelSizeY)
+    {
+        this->m_window->DrawR_CPixels(t_rects, t_count, t_pixelSizeX, t_pixelSizeY);
+    }
+
+
     void LayerWindow::Renderer_Print(const int& t_x, const int& t_y, const int& t_id)
     {
         this->m_window->DrawR_Font8x8(t_x, t_y, t_id);

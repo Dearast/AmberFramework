@@ -22,6 +22,17 @@ class Layer_MainWindow : public Amber::LayerWindow
             Renderer_Print((8*1*2), 8*6, 504, 2, 2);
             Renderer_Print((8*2*2), 8*6, 505, 2, 2);
 
+            //TODO Make some system for global pixel size set
+            //NOTE Rendering pixels
+            Renderer_Print(0, 100, "This is pixel 1x1 - ");
+            Renderer_Pixel(160, 100);
+
+            Renderer_Print(0, 116, "This is pixel 2x2 - ");
+            Renderer_Pixel(160, 116, 2, 2);
+
+            Renderer_Print(0, 132, "This is pixel 3x3 - ");
+            Renderer_Pixel(160, 132, 3, 3);
+
             Window_Draw();
         }
 
