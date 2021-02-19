@@ -101,6 +101,7 @@ namespace Amber
 
     void Window::DrawR_Line(const int& t_x1, const int& t_y1, const int& t_x2, const int& t_y2)
     {
+        SDL_RenderDrawLine(this->m_renderer, t_x1, t_y1, t_x2, t_y2);
     }
 
     void Window::DrawR_Lines(const std::vector<SDL_Point>& t_points, const int& t_count)
@@ -109,6 +110,11 @@ namespace Amber
 
     void Window::DrawR_CLine(const int& t_x1, const int& t_y1, const int& t_x2, const int& t_y2, const int& t_pixelSizeX, const int& t_pixelSizeY)
     {
+        for (int y = 0; y < t_pixelSizeY; y++) {
+            for (int x = 0; x < t_pixelSizeX; x++) {
+                this->DrawR_Line(t_x1 + x, t_y1 + y, t_x2 + x, t_y2 + y);
+            }
+        }
     }
 
     void Window::DrawR_CLines(const std::vector<SDL_Point>& t_points, const int& t_count, const int& t_pixelSizeX, const int& t_pixelSizeY)

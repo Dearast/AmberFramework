@@ -41,6 +41,22 @@ namespace Amber
         this->m_window->DrawR_CPixels(t_rects, t_count, t_pixelSizeX, t_pixelSizeY);
     }
 
+    void LayerWindow::Draw_Line(const int& t_x1, const int& t_y1, const int& t_x2, const int& t_y2)
+    {
+        this->m_window->DrawR_Line(t_x1, t_y1, t_x2, t_y2);
+    }
+    void LayerWindow::Draw_Line(const int& t_x1, const int& t_y1, const int& t_x2, const int& t_y2, const int& t_pixelSizeX, const int& t_pixelSizeY)
+    {
+        this->m_window->DrawR_CLine(t_x1, t_y1, t_x2, t_y2, t_pixelSizeX, t_pixelSizeY);
+    }
+    void LayerWindow::Draw_Lines(const std::vector<SDL_Point>& t_points, const int& t_count)
+    {
+        this->m_window->DrawR_Lines(t_points, t_count);
+    }
+    void LayerWindow::Draw_Lines(const std::vector<SDL_Point>& t_points, const int& t_count, const int& t_pixelSizeX, const int& t_pixelSizeY)
+    {
+        this->m_window->DrawR_CLines(t_points, t_count, t_pixelSizeX, t_pixelSizeY);
+    }
 
     void LayerWindow::Draw_Print(const int& t_x, const int& t_y, const int& t_id)
     {
