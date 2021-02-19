@@ -12,26 +12,27 @@ class Layer_MainWindow : public Amber::LayerWindow
         {
             Window_Clear();
 
-            Renderer_SetColor(255, 200, 60);
-            Renderer_Print(0, 0, "Amber Framework", 2, 2);
-            Renderer_Print(0, 8*4, "Hello, World!");
+            Draw_SetColor(255, 200, 60);
+
+            Draw_Print(0, 0, "Amber Framework", 2, 2);
+            Draw_Print(0, 8*4, "Hello, World!");
 
             //TODO Make some system for better writing japanese without numbers
             //NOTE Some example of printing japanese hiragana on window
-            Renderer_Print(0, 8*6, 503, 2, 2);
-            Renderer_Print((8*1*2), 8*6, 504, 2, 2);
-            Renderer_Print((8*2*2), 8*6, 505, 2, 2);
+            Draw_Print(0, 8*6, 503, 2, 2);
+            Draw_Print((8*1*2), 8*6, 504, 2, 2);
+            Draw_Print((8*2*2), 8*6, 505, 2, 2);
 
             //TODO Make some system for global pixel size set
             //NOTE Rendering pixels
-            Renderer_Print(0, 100, "This is pixel 1x1 - ");
-            Renderer_Pixel(160, 100);
+            Draw_Print(0, 100, "This is pixel 1x1 - ");
+            Draw_Pixel(160, 100);
 
-            Renderer_Print(0, 116, "This is pixel 2x2 - ");
-            Renderer_Pixel(160, 116, 2, 2);
+            Draw_Print(0, 116, "This is pixel 2x2 - ");
+            Draw_Pixel(160, 116, 2, 2);
 
-            Renderer_Print(0, 132, "This is pixel 3x3 - ");
-            Renderer_Pixel(160, 132, 3, 3);
+            Draw_Print(0, 132, "This is pixel 3x3 - ");
+            Draw_Pixel(160, 132, 3, 3);
 
             Window_Draw();
         }

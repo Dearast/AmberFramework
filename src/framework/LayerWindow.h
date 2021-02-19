@@ -26,16 +26,16 @@ namespace Amber
         void Window_Draw();
         void Window_Clear();
 
-        void Renderer_SetColor(const Uint8& t_red, const Uint8& t_green, const Uint8& t_blue, const Uint8& t_alpha = 255);
+        void Draw_SetColor(const Uint8& t_red, const Uint8& t_green, const Uint8& t_blue, const Uint8& t_alpha = 255);
 
-        void Renderer_Pixel(const int& t_x, const int& t_y);
-        void Renderer_Pixel(const int& t_x, const int& t_y, const int& t_pixelSizeX, const int& t_pixelSizeY);
-        void Renderer_Pixels(const std::vector<SDL_Point>& t_points, const int& t_count);
-        void Renderer_Pixels(const std::vector<SDL_Rect>& t_rects, const int& t_count, const int& t_pixelSizeX, const int& t_pixelSizeY);
+        void Draw_Pixel(const int& t_x, const int& t_y);
+        void Draw_Pixel(const int& t_x, const int& t_y, const int& t_pixelSizeX, const int& t_pixelSizeY);
+        void Draw_Pixels(const std::vector<SDL_Point>& t_points, const int& t_count);
+        void Draw_Pixels(const std::vector<SDL_Rect>& t_rects, const int& t_count, const int& t_pixelSizeX, const int& t_pixelSizeY);
 
-        void Renderer_Print(const int& t_x, const int& t_y, const int& t_id);
-        void Renderer_Print(const int& t_x, const int& t_y, const std::string& t_ids) ;
-        void Renderer_Print(const int& t_x, const int& t_y, const int& t_id, const int& t_pixelSizeX, const int& t_pixelSizeY);
-        void Renderer_Print(const int& t_x, const int& t_y, const std::string& t_ids, const int& t_pixelSizeX, const int& t_pixelSizeY);
+        void Draw_Print(const int& t_x, const int& t_y, const int& t_id);
+        void Draw_Print(const int& t_x, const int& t_y, const std::string& t_ids) ;
+        void Draw_Print(const int& t_x, const int& t_y, const int& t_id, const int& t_pixelSizeX, const int& t_pixelSizeY);
+        void Draw_Print(const int& t_x, const int& t_y, const std::string& t_ids, const int& t_pixelSizeX, const int& t_pixelSizeY);
     };
 }
