@@ -29,3 +29,6 @@ add_subdirectory(examples/003)
 
 #NOTE example_004 - SDL2 example
 add_subdirectory(examples/004)
+
+#NOTE asteroid tunnels - SDL2 example
+add_subdirectory(examples/asteroid_tunnels)
