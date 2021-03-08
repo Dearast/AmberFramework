@@ -54,13 +54,11 @@ namespace Amber
 
     void Window::OnUpdate()
     {
-        //TODO Make Update for SDL2
         SDL_RenderPresent(this->m_renderer);
     }
 
     void Window::ClearWindow()
     {
-        //TODO Make Clear for SDL2
         SDL_SetRenderDrawColor(this->m_renderer, 0, 0, 0, 255);
         SDL_RenderClear(this->m_renderer);
     }
@@ -80,14 +78,26 @@ namespace Amber
         SDL_SetRenderDrawColor(this->m_renderer, t_red, t_green, t_blue, t_alpha);
     }
 
+    void Window::Set_Renderer_Color(const Uint32& t_hexColor, const Uint8& t_alpha)
+    {
+        const Uint8 red   = static_cast<Uint8>((t_hexColor & 0xFF0000) >> 16);
+        const Uint8 green = static_cast<Uint8>((t_hexColor & 0x00FF00) >> 8);
+        const Uint8 blue  = static_cast<Uint8>(t_hexColor & 0x0000FF);
+
+        SDL_SetRenderDrawColor(this->m_renderer, red, green, blue, t_alpha);
+    }
+
     void Window::DrawR_Pixel(const int& t_x, const int& t_y)
     {
         SDL_RenderDrawPoint(this->m_renderer, t_x, t_y);
     }
 
+//TODO: Implement drawing under commented section
+/*
     void Window::DrawR_Pixels(const std::vector<SDL_Point>& t_points, const int& t_count)
     {
     }
+    */
 
     void Window::DrawR_CPixel(const int& t_x, const int& t_y, const int& t_pixelSizeX, const int& t_pixelSizeY)
     {
@@ -95,18 +105,24 @@ namespace Amber
         SDL_RenderFillRect(this->m_renderer, &rect);
     }
 
+//TODO: Implement drawing under commented section
+/*
     void Window::DrawR_CPixels(const std::vector<SDL_Rect>& t_rects, const int& t_count, const int& t_pixelSizeX, const int& t_pixelSizeY)
     {
     }
+    */
 
     void Window::DrawR_Line(const int& t_x1, const int& t_y1, const int& t_x2, const int& t_y2)
     {
         SDL_RenderDrawLine(this->m_renderer, t_x1, t_y1, t_x2, t_y2);
     }
 
+//TODO: Implement drawing under commented section
+/*
     void Window::DrawR_Lines(const std::vector<SDL_Point>& t_points, const int& t_count)
     {
     }
+    */
 
     void Window::DrawR_CLine(const int& t_x1, const int& t_y1, const int& t_x2, const int& t_y2, const int& t_pixelSizeX, const int& t_pixelSizeY)
     {
@@ -117,6 +133,8 @@ namespace Amber
         }
     }
 
+//TODO: Implement drawing under commented section
+/*
     void Window::DrawR_CLines(const std::vector<SDL_Point>& t_points, const int& t_count, const int& t_pixelSizeX, const int& t_pixelSizeY)
     {
     }
@@ -136,8 +154,9 @@ namespace Amber
     void Window::DrawR_CRectangles(const std::vector<SDL_Rect>& t_rects, const int& t_count, const int& t_pixelSizeX, const int& t_pixelSizeY)
     {
     }
+    */
 
-    void Window::DrawR_Font8x8(const int& t_x, const int& t_y, const int& t_id)
+    void Window::DrawR_Font8x8(const int& t_x, const int& t_y, const size_t& t_id)
     {
         int x, y;
         int set;
@@ -154,23 +173,23 @@ namespace Amber
 
     void Window::DrawR_Font8x8_string(const int& t_x, const int& t_y, const std::string& t_ids)
     {
-        for (int i = 0; i < t_ids.size(); i++)
+        for (size_t i = 0; i < t_ids.size(); i++)
         {
             if (t_ids[i] != ' ')
             {
-                this->DrawR_Font8x8(t_x + (8 * i), t_y, t_ids[i]);
+                this->DrawR_Font8x8(t_x + (8 * static_cast<int>(i)), t_y, static_cast<size_t>(t_ids[i]));
             }
         }
     }
 
-    void Window::DrawR_CFont8x8(const int& t_x, const int& t_y, const int& t_id, const int& t_pixelSizeX, const int& t_pixelSizeY)
+    void Window::DrawR_CFont8x8(const int& t_x, const int& t_y, const size_t& t_id, const int& t_pixelSizeX, const int& t_pixelSizeY)
     {
         int x, y;
         int set;
-        int mask;
+        //int mask; //NOTE: unused
         for (y = 0; y < 8; y++) {
             for (x = 0; x < 8; x++) {
-                set = font8x8[t_id][y] & 1 << x;
+                set = (font8x8[t_id][y] & 1) << x; //NOTE: signed 1
                 if (set > 0)
                 {
                     this->DrawR_CPixel(t_x + x * t_pixelSizeX, t_y + y * t_pixelSizeY, t_pixelSizeX, t_pixelSizeY);
@@ -181,11 +200,12 @@ namespace Amber
 
     void Window::DrawR_CFont8x8_string(const int& t_x, const int& t_y, const std::string& t_ids, const int& t_pixelSizeX, const int& t_pixelSizeY)
     {
-        for (int i = 0; i < t_ids.size(); i++)
+        constexpr int fontMultiplyer = 8;
+        for (size_t i = 0; i < t_ids.size(); i++)
         {
             if (t_ids[i] != ' ')
             {
-                this->DrawR_CFont8x8(t_x + (8 * i * t_pixelSizeX), t_y, t_ids[i], t_pixelSizeX, t_pixelSizeY);
+                this->DrawR_CFont8x8(t_x + (fontMultiplyer * static_cast<int>(i) * t_pixelSizeX), t_y, static_cast<size_t>(t_ids[i]), t_pixelSizeX, t_pixelSizeY);
             }
         }
     }
