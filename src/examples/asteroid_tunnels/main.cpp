@@ -1,12 +1,15 @@
 #include "../../framework/AmberFramework.h"
 
+constexpr int WINDOW_SIZE_X = 320;
+constexpr int WINDOW_SIZE_Y = 480;
+
 class Layer_MainWindow : public Amber::LayerWindow
 {
     private:
-        unsigned int m_gameState = 0;  //NOTE 0 = MainMenu | 1 = In Arcade(In Game) | 2 = GameOver
-        unsigned int m_mainMenuState = 0;  //NOTE 0 = Play | 1 = Quit
+        uint8_t m_gameState = 0;      //DESC: 0 = MainMenu | 1 = In Arcade(In Game) | 2 = GameOver
+        uint8_t m_mainMenuState = 0;  //DESC: 0 = Play | 1 = Quit
     public:
-        Layer_MainWindow() : LayerWindow({"Asteroids tunnels", true, 320, 480})
+        Layer_MainWindow() : LayerWindow({"Asteroids tunnels", true, WINDOW_SIZE_X, WINDOW_SIZE_Y})
         {
 
         }
@@ -15,6 +18,7 @@ class Layer_MainWindow : public Amber::LayerWindow
         {
             Window_Clear();
 
+            //TODO: Use imgui
             switch (this->m_gameState) {
                 case 0:
                 {
@@ -37,43 +41,13 @@ class Layer_MainWindow : public Amber::LayerWindow
                     }
                     else
                     {
-                        Draw_SetColor(200, 60, 60);
+                        Draw_SetColor(Amber::Colors::Red);
                     }
                     Draw_Print(160, 210, "Quit");
 
                     break;
                 }
             }
-
-
-
-            /*
-
-            Draw_Print(0, 0, "Amber Framework", 2, 2);
-            Draw_Print(0, 8*4, "Hello, World!");
-
-            //TODO Make some system for better writing japanese without numbers
-            //NOTE Some example of printing japanese hiragana on window
-            Draw_Print(0, 8*6, 503, 2, 2);
-            Draw_Print((8*1*2), 8*6, 504, 2, 2);
-            Draw_Print((8*2*2), 8*6, 505, 2, 2);
-
-            //TODO Make some system for global pixel size set
-            //NOTE Drawing pixels
-            Draw_Print(0, 100, "This is pixel 1x1 - ");
-            Draw_Pixel(160, 100);
-
-            Draw_Print(0, 116, "This is pixel 2x2 - ");
-            Draw_Pixel(160, 116, 2, 2);
-
-            Draw_Print(0, 132, "This is pixel 3x3 - ");
-            Draw_Pixel(160, 132, 3, 3);
-
-            //NOTE Drawing Lines
-            Draw_Line(0, 140, 160, 148);
-            Draw_Line(0, 150, 160, 158, 2, 2);
-*/
-
             Window_Draw();
         }
 
@@ -88,7 +62,6 @@ class Layer_MainWindow : public Amber::LayerWindow
                 }
                 if(t_event.type == SDL_KEYDOWN)
                 {
-                    //NOTE Check keys input for mainMenu
                     switch (this->m_gameState) {
                         case 0:
                         {
