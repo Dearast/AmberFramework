@@ -1,22 +1,20 @@
 add_definitions(-DCOMPILE_WITH_SDL)
 
-aux_source_directory(${PROJECT_SOURCE_DIR}/src/framework/ FRAMEWORK_FILES)                                                          #NOTE AUX find all cpp/h files in source folder for Engine
-aux_source_directory(${PROJECT_SOURCE_DIR}/src/vendor/imgui IMGUI_FILES)                                                          #NOTE AUX find all cpp/h files in source folder for Engine
+aux_source_directory(${PROJECT_SOURCE_DIR}/src/framework/ FRAMEWORK_FILES)
+aux_source_directory(${PROJECT_SOURCE_DIR}/src/vendor/imgui IMGUI_FILES)
 aux_source_directory(${PROJECT_SOURCE_DIR}/src/vendor/imgui-sdl IMGUI_SDL_FILES)
 
 if(UNIX)
-  #NOTE Amber Framework - Static library
   add_library(Amber_SDL STATIC ${FRAMEWORK_FILES} ${IMGUI_FILES} ${IMGUI_SDL_FILES})
 elseif(WIN32)
-  #NOTE Amber Framework - Shared library
-  add_library(Amber_SDL SHARED ${FRAMEWORK_FILES} ${IMGUI_FILES} ${IMGUI_SDL_FILES})                                                                                    #NOTE Create Engine lib file in lib folder
+  add_library(Amber_SDL SHARED ${FRAMEWORK_FILES} ${IMGUI_FILES} ${IMGUI_SDL_FILES})
 endif()
 
-target_include_directories(Amber_SDL PUBLIC ${PROJECT_SOURCE_DIR}/src/framework)                                                    #NOTE Include to Engine all h files in source folders
-if(ENABLE_CONAN_PKG_SDL2)  #NOTE Option for CONAN package manager that enable install SDL2 by CONAN.
-  target_link_libraries(Amber_SDL PUBLIC project_options project_warnings CONAN_PKG::spdlog CONAN_PKG::sdl2)                        #NOTE Link SDL2, spdlog to Amber
+target_include_directories(Amber_SDL PUBLIC ${PROJECT_SOURCE_DIR}/src/framework)
+if(ENABLE_CONAN_PKG_SDL2)
+  target_link_libraries(Amber_SDL PUBLIC project_options project_warnings CONAN_PKG::spdlog CONAN_PKG::sdl2)
 else()
-  target_link_libraries(Amber_SDL PUBLIC project_options project_warnings spdlog SDL2)                                              #NOTE Link SDL2, spdlog to Amber
+  target_link_libraries(Amber_SDL PUBLIC project_options project_warnings spdlog SDL2)
 endif()
 target_compile_definitions(Amber_SDL PUBLIC -D_SHARED_LIBRARY_)
 
