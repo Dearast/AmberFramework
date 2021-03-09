@@ -5,6 +5,9 @@ namespace Amber
     void Framework::Run()
     {
         AMBER_CORE_INFO("[Framework] -> [Status] -> [Running]");
+        #if PROFILING
+        Instrumentor::Get().BeginSession("Amber_Framework");
+        #endif
 
         while(m_running)
         {
@@ -27,6 +30,9 @@ namespace Amber
                 }
             }
         }
+        #if PROFILING
+        Instrumentor::Get().EndSession();
+        #endif
     }
 
     void Framework::OnEvent()

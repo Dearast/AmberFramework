@@ -1,5 +1,6 @@
 #include "../../framework/AmberFramework.h"
 
+#define PROFILING 0
 constexpr int WINDOW_SIZE_X = 320;
 constexpr int WINDOW_SIZE_Y = 480;
 
@@ -9,17 +10,13 @@ class Layer_MainWindow : public Amber::LayerWindow
         uint8_t m_gameState = 0;      //DESC: 0 = MainMenu | 1 = In Arcade(In Game) | 2 = GameOver
         uint8_t m_mainMenuState = 0;  //DESC: 0 = Play | 1 = Quit
     public:
-        Layer_MainWindow() : LayerWindow({"Asteroids tunnels", true, WINDOW_SIZE_X, WINDOW_SIZE_Y})
-        {
-
-        }
+        Layer_MainWindow() : LayerWindow({"Asteroids tunnels", true, WINDOW_SIZE_X, WINDOW_SIZE_Y}) {}
 
         void OnUpdate() override
         {
+            PROFILE_FUNCTION();
             Window_Clear();
 
-            //TODO: Move to Core
-            //DESC: ImGui
             ImGui::NewFrame();
             ImGui::ShowDemoWindow();
 
@@ -57,7 +54,7 @@ class Layer_MainWindow : public Amber::LayerWindow
 
         void OnEvent(SDL_Event& t_event) override
         {
-            //TODO: Move this to core
+            PROFILE_FUNCTION();
             ImGuiIO& io = ImGui::GetIO();
             int wheel = 0;
 
@@ -112,14 +109,12 @@ class Layer_MainWindow : public Amber::LayerWindow
                     }
                 }
                 
-                //TODO: Move this to core
                 if(t_event.type == SDL_MOUSEWHEEL)
                 {
                     wheel = t_event.wheel.y;
                 }
             }
 
-            //TODO: Move this to core
             int mouseX, mouseY;
 		    const int buttons = SDL_GetMouseState(&mouseX, &mouseY);
             io.DeltaTime = 1.0f / 60.0f;
