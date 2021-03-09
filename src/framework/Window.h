@@ -6,6 +6,8 @@
 #include "Logger.h"
 
 #include <SDL2/SDL.h>
+#include "../vendor/imgui/imgui.h"
+#include "../vendor/imgui-sdl/imgui_sdl.h"
 
 namespace Amber
 {
@@ -38,7 +40,7 @@ namespace Amber
     public:
     ~Window();
 
-    void Init(const WindowProps& t_props = WindowProps());
+    void Init(const WindowProps& t_props = WindowProps(), const bool& t_imgui = false);
     void OnUpdate();
 
     void ClearWindow();

@@ -18,7 +18,11 @@ class Layer_MainWindow : public Amber::LayerWindow
         {
             Window_Clear();
 
-            //TODO: Use imgui
+            //TODO: Move to Core
+            //DESC: ImGui
+            ImGui::NewFrame();
+            ImGui::ShowDemoWindow();
+
             switch (this->m_gameState) {
                 case 0:
                 {
@@ -53,6 +57,10 @@ class Layer_MainWindow : public Amber::LayerWindow
 
         void OnEvent(SDL_Event& t_event) override
         {
+            //TODO: Move this to core
+            ImGuiIO& io = ImGui::GetIO();
+            int wheel = 0;
+
             while(SDL_PollEvent(&t_event) != 0 )
             {
                 if(t_event.type == SDL_QUIT)
@@ -103,7 +111,22 @@ class Layer_MainWindow : public Amber::LayerWindow
                         }
                     }
                 }
+                
+                //TODO: Move this to core
+                if(t_event.type == SDL_MOUSEWHEEL)
+                {
+                    wheel = t_event.wheel.y;
+                }
             }
+
+            //TODO: Move this to core
+            int mouseX, mouseY;
+		    const int buttons = SDL_GetMouseState(&mouseX, &mouseY);
+            io.DeltaTime = 1.0f / 60.0f;
+            io.MousePos = ImVec2(static_cast<float>(mouseX), static_cast<float>(mouseY));
+            io.MouseDown[0] = buttons & SDL_BUTTON(SDL_BUTTON_LEFT);
+            io.MouseDown[1] = buttons & SDL_BUTTON(SDL_BUTTON_RIGHT);
+            io.MouseWheel = static_cast<float>(wheel);
         }
 };
 

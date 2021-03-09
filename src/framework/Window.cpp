@@ -6,11 +6,18 @@ namespace Amber
 {
     Window::~Window()
     {
+        //DESC: Destroy ImGuiSDL
+        ImGuiSDL::Deinitialize();
+
+        //DESC: Destroy SDL
         SDL_DestroyRenderer(this->m_renderer);
         SDL_DestroyWindow(this->m_window);
+
+        //DESC: Destroy ImGui
+        ImGui::DestroyContext();
     }
 
-    void Window::Init(const WindowProps& t_props)
+    void Window::Init(const WindowProps& t_props, const bool& t_imgui)
     {
         this->m_windowProps = t_props;
         if(SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -42,6 +49,10 @@ namespace Amber
                 }
                 else
                 {
+                    //DESC: Initialize Imgui-SDL
+                    ImGui::CreateContext();
+                    ImGuiSDL::Initialize(this->m_renderer, this->m_windowProps.width, this->m_windowProps.height);
+
                     SDL_SetRenderDrawColor(this->m_renderer, 0, 0, 0, 255);
                     SDL_RenderClear(this->m_renderer);
                     SDL_RenderPresent(this->m_renderer);
@@ -54,6 +65,9 @@ namespace Amber
 
     void Window::OnUpdate()
     {
+        ImGui::Render();
+        ImGuiSDL::Render(ImGui::GetDrawData());
+
         SDL_RenderPresent(this->m_renderer);
     }
 

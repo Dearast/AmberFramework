@@ -1,13 +1,15 @@
 add_definitions(-DCOMPILE_WITH_SDL)
 
 aux_source_directory(${PROJECT_SOURCE_DIR}/src/framework/ FRAMEWORK_FILES)                                                          #NOTE AUX find all cpp/h files in source folder for Engine
+aux_source_directory(${PROJECT_SOURCE_DIR}/src/vendor/imgui IMGUI_FILES)                                                          #NOTE AUX find all cpp/h files in source folder for Engine
+aux_source_directory(${PROJECT_SOURCE_DIR}/src/vendor/imgui-sdl IMGUI_SDL_FILES)
 
 if(UNIX)
   #NOTE Amber Framework - Static library
-  add_library(Amber_SDL STATIC ${FRAMEWORK_FILES})
+  add_library(Amber_SDL STATIC ${FRAMEWORK_FILES} ${IMGUI_FILES} ${IMGUI_SDL_FILES})
 elseif(WIN32)
   #NOTE Amber Framework - Shared library
-  add_library(Amber_SDL SHARED ${FRAMEWORK_FILES})                                                                                    #NOTE Create Engine lib file in lib folder
+  add_library(Amber_SDL SHARED ${FRAMEWORK_FILES} ${IMGUI_FILES} ${IMGUI_SDL_FILES})                                                                                    #NOTE Create Engine lib file in lib folder
 endif()
 
 target_include_directories(Amber_SDL PUBLIC ${PROJECT_SOURCE_DIR}/src/framework)                                                    #NOTE Include to Engine all h files in source folders
