@@ -6,15 +6,10 @@ namespace Amber
 {
     Window::~Window()
     {
-        //DESC: Destroy ImGuiSDL
-        ImGuiSDL::Deinitialize();
-
-        //DESC: Destroy SDL
-        SDL_DestroyRenderer(this->m_renderer);
-        SDL_DestroyWindow(this->m_window);
-
-        //DESC: Destroy ImGui
-        ImGui::DestroyContext();
+        ImGuiSDL::Deinitialize();              //DESC: Destroy ImGuiSDL
+        SDL_DestroyRenderer(this->m_renderer); //DESC: Destroy SDL2 Renderer
+        SDL_DestroyWindow(this->m_window);     //DESC: Destroy SDL2 Window
+        ImGui::DestroyContext();               //DESC: Destroy ImGui
     }
 
     void Window::Init(const WindowProps& t_props, const bool& t_imgui)
@@ -65,14 +60,23 @@ namespace Amber
 
     void Window::OnUpdate()
     {
+        #if PROFILING
+        InstrumentationTimer timer_imgui("Window::OnUpdate()->ImGui");
+        #endif
         ImGui::Render();
+        #if PROFILING
+        InstrumentationTimer timer_imguisdl("Window::OnUpdate()->ImGuiSDL");
+        #endif
         ImGuiSDL::Render(ImGui::GetDrawData());
-
+        #if PROFILING
+        InstrumentationTimer timer_renderpresent("Window::OnUpdate()->SDL_RenderPresent");
+        #endif
         SDL_RenderPresent(this->m_renderer);
     }
 
     void Window::ClearWindow()
     {
+        PROFILE_FUNCTION();
         SDL_SetRenderDrawColor(this->m_renderer, 0, 0, 0, 255);
         SDL_RenderClear(this->m_renderer);
     }
@@ -89,11 +93,13 @@ namespace Amber
 
     void Window::Set_Renderer_Color(const Uint8& t_red, const Uint8& t_green, const Uint8& t_blue, const Uint8& t_alpha)
     {
+        PROFILE_FUNCTION();
         SDL_SetRenderDrawColor(this->m_renderer, t_red, t_green, t_blue, t_alpha);
     }
 
     void Window::Set_Renderer_Color(const Uint32& t_hexColor, const Uint8& t_alpha)
     {
+        PROFILE_FUNCTION();
         const Uint8 red   = static_cast<Uint8>((t_hexColor & 0xFF0000) >> 16);
         const Uint8 green = static_cast<Uint8>((t_hexColor & 0x00FF00) >> 8);
         const Uint8 blue  = static_cast<Uint8>(t_hexColor & 0x0000FF);
@@ -103,6 +109,7 @@ namespace Amber
 
     void Window::DrawR_Pixel(const int& t_x, const int& t_y)
     {
+        PROFILE_FUNCTION();
         SDL_RenderDrawPoint(this->m_renderer, t_x, t_y);
     }
 
@@ -115,6 +122,7 @@ namespace Amber
 
     void Window::DrawR_CPixel(const int& t_x, const int& t_y, const int& t_pixelSizeX, const int& t_pixelSizeY)
     {
+        PROFILE_FUNCTION();
         SDL_Rect rect{ t_x, t_y, t_pixelSizeX, t_pixelSizeY };
         SDL_RenderFillRect(this->m_renderer, &rect);
     }
@@ -128,6 +136,7 @@ namespace Amber
 
     void Window::DrawR_Line(const int& t_x1, const int& t_y1, const int& t_x2, const int& t_y2)
     {
+        PROFILE_FUNCTION();
         SDL_RenderDrawLine(this->m_renderer, t_x1, t_y1, t_x2, t_y2);
     }
 
@@ -140,6 +149,7 @@ namespace Amber
 
     void Window::DrawR_CLine(const int& t_x1, const int& t_y1, const int& t_x2, const int& t_y2, const int& t_pixelSizeX, const int& t_pixelSizeY)
     {
+        PROFILE_FUNCTION();
         for (int y = 0; y < t_pixelSizeY; y++) {
             for (int x = 0; x < t_pixelSizeX; x++) {
                 this->DrawR_Line(t_x1 + x, t_y1 + y, t_x2 + x, t_y2 + y);
@@ -172,6 +182,7 @@ namespace Amber
 
     void Window::DrawR_Font8x8(const int& t_x, const int& t_y, const size_t& t_id)
     {
+        PROFILE_FUNCTION();
         int x, y;
         int set;
         for (y = 0; y < 8; y++) {
@@ -187,6 +198,7 @@ namespace Amber
 
     void Window::DrawR_Font8x8_string(const int& t_x, const int& t_y, const std::string& t_ids)
     {
+        PROFILE_FUNCTION();
         for (size_t i = 0; i < t_ids.size(); i++)
         {
             if (t_ids[i] != ' ')
@@ -198,12 +210,12 @@ namespace Amber
 
     void Window::DrawR_CFont8x8(const int& t_x, const int& t_y, const size_t& t_id, const int& t_pixelSizeX, const int& t_pixelSizeY)
     {
+        PROFILE_FUNCTION();
         int x, y;
         int set;
-        //int mask; //NOTE: unused
         for (y = 0; y < 8; y++) {
             for (x = 0; x < 8; x++) {
-                set = (font8x8[t_id][y] & 1) << x; //NOTE: signed 1
+                set = (font8x8[t_id][y] & 1) << x;
                 if (set > 0)
                 {
                     this->DrawR_CPixel(t_x + x * t_pixelSizeX, t_y + y * t_pixelSizeY, t_pixelSizeX, t_pixelSizeY);
@@ -214,6 +226,7 @@ namespace Amber
 
     void Window::DrawR_CFont8x8_string(const int& t_x, const int& t_y, const std::string& t_ids, const int& t_pixelSizeX, const int& t_pixelSizeY)
     {
+        PROFILE_FUNCTION();
         constexpr int fontMultiplyer = 8;
         for (size_t i = 0; i < t_ids.size(); i++)
         {

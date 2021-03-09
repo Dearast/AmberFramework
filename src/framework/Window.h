@@ -6,8 +6,16 @@
 #include "Logger.h"
 
 #include <SDL2/SDL.h>
+
+//LINK: https://www.cplusplus.com/forum/general/120863/
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wconversion"
+#pragma GCC diagnostic ignored "-Wold-style-cast"
 #include "../vendor/imgui/imgui.h"
 #include "../vendor/imgui-sdl/imgui_sdl.h"
+#pragma GCC diagnostic pop
+
 
 namespace Amber
 {
