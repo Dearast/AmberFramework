@@ -22,7 +22,7 @@ namespace Amber
         void OnUpdate() override {}
         void OnEvent([[maybe_unused]] SDL_Event& t_event) override  {}
 
-        //NOTE Reintrepret from Window
+        //NOTE: Reintrepret from Window
         void Window_Draw();
         void Window_Clear();
 

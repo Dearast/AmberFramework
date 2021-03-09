@@ -8,7 +8,6 @@ namespace Amber
         this->m_window->Init(t_windowProps);
     }
 
-    //NOTE Reintrepret from Window
     void LayerWindow::Window_Draw()
     {
         this->m_window->OnUpdate();
